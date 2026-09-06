@@ -94,6 +94,48 @@ const dressCode = [
   },
 ];
 
+// Add each person's name (and later their photo) here.
+const bridesmaids = Array.from({ length: 7 }, (_, i) => ({
+  name: `Bridesmaid ${i + 1}`,
+  photo: null as string | null,
+}));
+const groomsmen = Array.from({ length: 7 }, (_, i) => ({
+  name: `Groomsman ${i + 1}`,
+  photo: null as string | null,
+}));
+
+function PartyMember({
+  person,
+  index,
+}: {
+  person: { name: string; photo: string | null };
+  index: number;
+}) {
+  return (
+    <Reveal delay={index * 90} className="flex flex-col items-center gap-3">
+      <div className="relative h-24 w-24 overflow-hidden rounded-full border border-primary/40 bg-secondary/60 ring-4 ring-card sm:h-28 sm:w-28">
+        {person.photo ? (
+          <img
+            src={person.photo}
+            alt={person.name}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <span className="font-script text-3xl text-primary/60">
+              {person.name.charAt(0)}
+            </span>
+          </div>
+        )}
+      </div>
+      <p className="font-caps text-[0.55rem] tracking-[0.22em] text-muted-foreground uppercase">
+        {person.name}
+      </p>
+    </Reveal>
+  );
+}
+
 function Ornament() {
   return (
     <img
@@ -269,6 +311,31 @@ function Invitation() {
         </div>
       </section>
 
+      {/* Wedding party */}
+      <section className="relative z-10 px-6 py-20 sm:py-28">
+        <SectionTitle kicker="Standing with us" title="The Wedding Party" />
+        <div className="mx-auto mt-14 grid max-w-5xl gap-12 lg:grid-cols-2">
+          <div>
+            <h3 className="font-script text-center text-4xl text-foreground">Bridesmaids</h3>
+            <div className="gold-rule mx-auto mt-5 w-20" />
+            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
+              {bridesmaids.map((p, i) => (
+                <PartyMember key={p.name} person={p} index={i} />
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="font-script text-center text-4xl text-foreground">Groomsmen</h3>
+            <div className="gold-rule mx-auto mt-5 w-20" />
+            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
+              {groomsmen.map((p, i) => (
+                <PartyMember key={p.name} person={p} index={i} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Colour code */}
       <section className="relative z-10 border-y border-primary/20 bg-secondary/40 px-6 py-20 sm:py-28">
         <SectionTitle kicker="Dress in celebration" title="Colour Code" />
@@ -299,8 +366,7 @@ function Invitation() {
         </div>
         <Reveal delay={200}>
           <p className="mx-auto mt-12 max-w-xl text-center text-lg text-muted-foreground italic">
-            Seven bridesmaids and seven groomsmen will stand with us — their names will be added
-            here soon.
+            Our seven bridesmaids and seven groomsmen will be dressed in these colours.
           </p>
         </Reveal>
       </section>
