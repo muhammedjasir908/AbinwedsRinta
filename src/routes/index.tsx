@@ -311,6 +311,31 @@ function Invitation() {
         </div>
       </section>
 
+      {/* Wedding party */}
+      <section className="relative z-10 px-6 py-20 sm:py-28">
+        <SectionTitle kicker="Standing with us" title="The Wedding Party" />
+        <div className="mx-auto mt-14 grid max-w-5xl gap-12 lg:grid-cols-2">
+          <div>
+            <h3 className="font-script text-center text-4xl text-foreground">Bridesmaids</h3>
+            <div className="gold-rule mx-auto mt-5 w-20" />
+            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
+              {bridesmaids.map((p, i) => (
+                <PartyMember key={p.name} person={p} index={i} />
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="font-script text-center text-4xl text-foreground">Groomsmen</h3>
+            <div className="gold-rule mx-auto mt-5 w-20" />
+            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3">
+              {groomsmen.map((p, i) => (
+                <PartyMember key={p.name} person={p} index={i} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Colour code */}
       <section className="relative z-10 border-y border-primary/20 bg-secondary/40 px-6 py-20 sm:py-28">
         <SectionTitle kicker="Dress in celebration" title="Colour Code" />
