@@ -366,8 +366,7 @@ function Invitation() {
         </div>
         <Reveal delay={200}>
           <p className="mx-auto mt-12 max-w-xl text-center text-lg text-muted-foreground italic">
-            Seven bridesmaids and seven groomsmen will stand with us — their names will be added
-            here soon.
+            Our seven bridesmaids and seven groomsmen will be dressed in these colours.
           </p>
         </Reveal>
       </section>
