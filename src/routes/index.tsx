@@ -94,6 +94,48 @@ const dressCode = [
   },
 ];
 
+// Add each person's name (and later their photo) here.
+const bridesmaids = Array.from({ length: 7 }, (_, i) => ({
+  name: `Bridesmaid ${i + 1}`,
+  photo: null as string | null,
+}));
+const groomsmen = Array.from({ length: 7 }, (_, i) => ({
+  name: `Groomsman ${i + 1}`,
+  photo: null as string | null,
+}));
+
+function PartyMember({
+  person,
+  index,
+}: {
+  person: { name: string; photo: string | null };
+  index: number;
+}) {
+  return (
+    <Reveal delay={index * 90} className="flex flex-col items-center gap-3">
+      <div className="relative h-24 w-24 overflow-hidden rounded-full border border-primary/40 bg-secondary/60 ring-4 ring-card sm:h-28 sm:w-28">
+        {person.photo ? (
+          <img
+            src={person.photo}
+            alt={person.name}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <span className="font-script text-3xl text-primary/60">
+              {person.name.charAt(0)}
+            </span>
+          </div>
+        )}
+      </div>
+      <p className="font-caps text-[0.55rem] tracking-[0.22em] text-muted-foreground uppercase">
+        {person.name}
+      </p>
+    </Reveal>
+  );
+}
+
 function Ornament() {
   return (
     <img
