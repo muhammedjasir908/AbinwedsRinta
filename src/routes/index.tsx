@@ -5,6 +5,13 @@ import { Countdown } from "@/components/Countdown";
 import { Reveal } from "@/components/Reveal";
 import heroFloral from "@/assets/hero-floral.jpg";
 import divider from "@/assets/divider.png";
+import bridesmaid1 from "@/assets/bridesmaid-1.jpg";
+import bridesmaid2 from "@/assets/bridesmaid-2.jpg";
+import bridesmaid3 from "@/assets/bridesmaid-3.jpg";
+import bridesmaid4 from "@/assets/bridesmaid-4.jpg";
+import bridesmaid5 from "@/assets/bridesmaid-5.jpg";
+import bridesmaid6 from "@/assets/bridesmaid-6.jpg";
+import bridesmaid7 from "@/assets/bridesmaid-7.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -94,10 +101,17 @@ const dressCode = [
   },
 ];
 
-// Add each person's name (and later their photo) here.
-const bridesmaids = Array.from({ length: 7 }, (_, i) => ({
+const bridesmaids = [
+  bridesmaid1,
+  bridesmaid2,
+  bridesmaid3,
+  bridesmaid4,
+  bridesmaid5,
+  bridesmaid6,
+  bridesmaid7,
+].map((photo, i) => ({
   name: `Bridesmaid ${i + 1}`,
-  photo: null as string | null,
+  photo,
 }));
 const groomsmen = Array.from({ length: 7 }, (_, i) => ({
   name: `Groomsman ${i + 1}`,
