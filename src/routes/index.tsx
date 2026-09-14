@@ -109,29 +109,25 @@ const dressCode = [
 ];
 
 const bridesmaids = [
-  bridesmaid1,
-  bridesmaid2,
-  bridesmaid3,
-  bridesmaid4,
-  bridesmaid5,
-  bridesmaid6,
-  bridesmaid7,
-].map((photo, i) => ({
-  name: `Bridesmaid ${i + 1}`,
-  photo,
-}));
+  { name: "Raima Johnny", photo: bridesmaid1 },
+  { name: "Angela Merin Tom", photo: bridesmaid2 },
+  { name: "Dona Christy", photo: bridesmaid3 },
+  { name: "Aryamol Sajeev", photo: bridesmaid4 },
+  { name: "Saina Saji", photo: bridesmaid5 },
+  { name: "Anugraha Ann", photo: bridesmaid6 },
+  { name: "Reva Mariam", photo: bridesmaid7 },
+];
 const groomsmen = [
-  groomsman1Asset.url,
-  groomsman2Asset.url,
-  groomsman3Asset.url,
-  groomsman4Asset.url,
-  groomsman5Asset.url,
-  groomsman6Asset.url,
-  groomsman7Asset.url,
-].map((photo, i) => ({
-  name: `Groomsman ${i + 1}`,
-  photo,
-}));
+  { name: "Sidhu K S", photo: groomsman1Asset.url },
+  { name: "Anil Abraham", photo: groomsman2Asset.url },
+  { name: "Rohan Varghese", photo: groomsman3Asset.url },
+  { name: "Mobin Thomas", photo: groomsman4Asset.url },
+  { name: "Geevarghese Joffy", photo: groomsman5Asset.url },
+  { name: "Jerry Alexander", photo: groomsman6Asset.url },
+  { name: "Ashish PV", photo: groomsman7Asset.url },
+];
+
+const kidsTeam = ["Zairah", "Zakh", "Jermariah", "Don Paul"];
 
 function PartyMember({
   person,
@@ -231,7 +227,7 @@ function Invitation() {
           height={1536}
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-background/35" />
+        <div className="absolute inset-0 bg-background/65" />
         <div className="animate-rise relative z-10 max-w-xl text-center">
           <p className="font-caps text-[0.6rem] tracking-[0.5em] text-muted-foreground uppercase">
             The Wedding Celebration of
@@ -361,6 +357,20 @@ function Invitation() {
                 <PartyMember key={p.name} person={p} index={i} />
               ))}
             </div>
+            <Reveal delay={300} className="mt-14 text-center">
+              <p className="font-caps text-[0.58rem] tracking-[0.38em] text-primary uppercase">
+                Best compliments from
+              </p>
+              <h4 className="font-script mt-3 text-4xl text-foreground">Our Kids Team</h4>
+              <div className="gold-rule mx-auto mt-5 w-20" />
+              <div className="mt-6 flex flex-wrap justify-center gap-x-7 gap-y-3">
+                {kidsTeam.map((name) => (
+                  <span key={name} className="font-display text-lg text-muted-foreground">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
