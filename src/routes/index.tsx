@@ -12,6 +12,13 @@ import bridesmaid4 from "@/assets/bridesmaid-4.jpg";
 import bridesmaid5 from "@/assets/bridesmaid-5.jpg";
 import bridesmaid6 from "@/assets/bridesmaid-6.jpg";
 import bridesmaid7 from "@/assets/bridesmaid-7.jpg";
+import groomsman1Asset from "@/assets/groomsman-1.jpg.asset.json";
+import groomsman2Asset from "@/assets/groomsman-2.jpg.asset.json";
+import groomsman3Asset from "@/assets/groomsman-3.jpg.asset.json";
+import groomsman4Asset from "@/assets/groomsman-4.jpg.asset.json";
+import groomsman5Asset from "@/assets/groomsman-5.jpg.asset.json";
+import groomsman6Asset from "@/assets/groomsman-6.jpg.asset.json";
+import groomsman7Asset from "@/assets/groomsman-7.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -113,9 +120,17 @@ const bridesmaids = [
   name: `Bridesmaid ${i + 1}`,
   photo,
 }));
-const groomsmen = Array.from({ length: 7 }, (_, i) => ({
+const groomsmen = [
+  groomsman1Asset.url,
+  groomsman2Asset.url,
+  groomsman3Asset.url,
+  groomsman4Asset.url,
+  groomsman5Asset.url,
+  groomsman6Asset.url,
+  groomsman7Asset.url,
+].map((photo, i) => ({
   name: `Groomsman ${i + 1}`,
-  photo: null as string | null,
+  photo,
 }));
 
 function PartyMember({
