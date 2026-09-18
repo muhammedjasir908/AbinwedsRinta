@@ -12,7 +12,15 @@ function diff(target: number) {
   ];
 }
 
-export function Countdown({ target, label }: { target: string; label: string }) {
+export function Countdown({
+  target,
+  label,
+  compact = false,
+}: {
+  target: string;
+  label: string;
+  compact?: boolean;
+}) {
   const time = new Date(target).getTime();
   const [parts, setParts] = useState<number[] | null>(null);
 
@@ -24,19 +32,37 @@ export function Countdown({ target, label }: { target: string; label: string }) 
 
   return (
     <div className="text-center">
-      <p className="font-caps text-[0.65rem] tracking-[0.42em] text-muted-foreground uppercase">
+      <p
+        className={`font-caps uppercase ${
+          compact
+            ? "sr-only"
+            : "text-[0.65rem] tracking-[0.42em] text-muted-foreground"
+        }`}
+      >
         {label}
       </p>
-      <div className="mt-5 flex justify-center gap-3 sm:gap-6">
+      <div className={compact ? "flex justify-center gap-2 sm:gap-4" : "mt-5 flex justify-center gap-3 sm:gap-6"}>
         {units.map((u, i) => (
           <div
             key={u}
-            className="card-paper flex min-w-[68px] flex-col items-center px-3 py-4 sm:min-w-[92px] sm:px-5"
+            className={
+              compact
+                ? "flex min-w-12 flex-col items-center px-1 sm:min-w-14"
+                : "card-paper flex min-w-[68px] flex-col items-center px-3 py-4 sm:min-w-[92px] sm:px-5"
+            }
           >
-            <span className="font-display text-3xl text-foreground tabular-nums sm:text-4xl">
+            <span
+              className={`font-display text-foreground tabular-nums ${
+                compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl"
+              }`}
+            >
               {parts ? String(parts[i]).padStart(2, "0") : "--"}
             </span>
-            <span className="font-caps mt-2 text-[0.55rem] tracking-[0.3em] text-muted-foreground uppercase">
+            <span
+              className={`font-caps text-muted-foreground uppercase ${
+                compact ? "mt-1 text-[0.42rem] tracking-[0.2em]" : "mt-2 text-[0.55rem] tracking-[0.3em]"
+              }`}
+            >
               {u}
             </span>
           </div>

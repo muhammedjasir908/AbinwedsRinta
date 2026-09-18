@@ -46,8 +46,8 @@ export function PetalRain({ count = 26 }: { count?: number }) {
             borderRadius: "60% 10% 60% 10% / 60% 60% 10% 40%",
             background:
               p.hue > 0.55
-                ? "linear-gradient(135deg, oklch(0.96 0.02 60), oklch(0.89 0.05 25))"
-                : "linear-gradient(135deg, oklch(0.93 0.05 20), oklch(0.85 0.07 15))",
+                ? "linear-gradient(135deg, var(--petal-light), var(--petal-warm))"
+                : "linear-gradient(135deg, var(--petal-blush), var(--petal-deep))",
             filter: "blur(0.2px)",
           }}
         />
