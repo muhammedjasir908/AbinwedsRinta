@@ -5,6 +5,7 @@ import { Countdown } from "@/components/Countdown";
 import { Reveal } from "@/components/Reveal";
 import heroFloral from "@/assets/hero-floral.jpg";
 import divider from "@/assets/divider.png";
+import coupleOpening from "@/assets/couple-opening.png";
 import bridesmaid1 from "@/assets/bridesmaid-1.jpg";
 import bridesmaid2 from "@/assets/bridesmaid-2.jpg";
 import bridesmaid3 from "@/assets/bridesmaid-3.jpg";
@@ -194,28 +195,38 @@ function Invitation() {
 
       {/* Landing gate */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-background px-8 text-center transition-all duration-1000 ${
+        className={`fixed inset-0 z-40 overflow-hidden bg-background text-center transition-all duration-1000 ${
           opened ? "pointer-events-none -translate-y-6 opacity-0" : "opacity-100"
         }`}
       >
-        <div className="pointer-events-none absolute inset-5 border border-primary/30 sm:inset-8" />
-        <div className="pointer-events-none absolute inset-7 border border-primary/15 sm:inset-11" />
-        <p className="font-caps text-[0.6rem] tracking-[0.5em] text-muted-foreground uppercase">
-          Together with their families
-        </p>
-        <h1 className="font-script mt-6 text-5xl leading-tight text-foreground sm:text-7xl">
-          Abin <span className="gold-text">&amp;</span> Rinta
-        </h1>
-        <Ornament />
-        <p className="font-caps text-[0.65rem] tracking-[0.4em] text-muted-foreground uppercase">
-          05 · 11 · 2026
-        </p>
-        <button
-          onClick={() => setOpened(true)}
-          className="font-caps mt-9 cursor-pointer border border-primary/50 bg-transparent px-9 py-3 text-[0.62rem] tracking-[0.35em] text-foreground uppercase transition-colors duration-500 hover:bg-primary/10"
-        >
-          Open Invitation
-        </button>
+        <div className="pointer-events-none absolute inset-5 z-20 border border-primary/30 sm:inset-8" />
+        <div className="pointer-events-none absolute inset-7 z-20 border border-primary/15 sm:inset-11" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-2/3 bg-gradient-to-b from-background via-background/90 to-transparent" />
+
+        <img
+          src={coupleOpening}
+          alt="Abin and Rinta"
+          className="pointer-events-none absolute bottom-0 left-1/2 h-[68svh] max-h-[760px] w-auto max-w-[92vw] -translate-x-1/2 object-contain object-bottom drop-shadow-2xl sm:h-[72svh]"
+        />
+
+        <div className="relative z-30 mx-auto flex h-full max-w-xl flex-col items-center px-10 pb-10 pt-[8svh] sm:pt-[9svh]">
+          <p className="font-caps text-[0.55rem] tracking-[0.42em] text-muted-foreground uppercase sm:text-[0.6rem]">
+            Together with their families
+          </p>
+          <h1 className="font-script mt-3 text-5xl leading-tight text-foreground drop-shadow-lg sm:mt-5 sm:text-7xl">
+            Abin <span className="gold-text">&amp;</span> Rinta
+          </h1>
+          <div className="gold-rule mt-3 w-28 sm:mt-5" />
+          <p className="font-caps mt-3 text-[0.6rem] tracking-[0.35em] text-foreground uppercase sm:text-[0.65rem]">
+            05 · 11 · 2026
+          </p>
+          <button
+            onClick={() => setOpened(true)}
+            className="font-caps mt-auto cursor-pointer border border-primary/60 bg-background/80 px-8 py-3 text-[0.58rem] tracking-[0.3em] text-foreground uppercase shadow-lg backdrop-blur-sm transition-colors duration-500 hover:bg-primary/15 sm:px-9 sm:text-[0.62rem]"
+          >
+            Open Invitation
+          </button>
+        </div>
       </div>
 
       {/* Hero */}
