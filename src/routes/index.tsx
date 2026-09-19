@@ -159,9 +159,9 @@ const dressCode = [
     colors: [
       { name: "Baby Blue", hex: "#CEF4F7" },
       { name: "Lavender", hex: "#D1CCEC" },
-      { name: "Blush", hex: "#FED3DA" },
+      { name: "Blush Pink", hex: "#FED3DA" },
       { name: "Cream", hex: "#FEF0D6" },
-      { name: "Mint", hex: "#C5EBD4" },
+      { name: "Mint Green", hex: "#C5EBD4" },
     ],
   },
 ];
@@ -644,20 +644,22 @@ function Invitation() {
         <p className="mx-auto mt-4 max-w-[40ch] text-center text-xl leading-relaxed text-muted-foreground italic">
           We kindly encourage our guests to wear these colours for our special days.
         </p>
-        <div className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-4xl gap-6">
           {dressCode.map((d, i) => (
             <Reveal key={d.event} delay={i * 150}>
-              <div className="card-paper px-7 py-9 text-center">
+              <div className="card-paper px-5 py-9 text-center sm:px-8">
                 <h3 className="font-script text-4xl text-foreground">{d.event}</h3>
                 <p className="mt-2 text-[1.05rem] text-muted-foreground italic">{d.note}</p>
-                <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-6">
+                <div className="mt-8 grid grid-cols-5 items-start justify-items-center gap-2 sm:gap-4">
                   {d.colors.map((c) => (
-                    <div key={c.name} className="flex flex-col items-center gap-3">
+                    <div key={c.name} className="flex w-full max-w-[5.5rem] flex-col items-center gap-2.5">
                       <span
-                        className="h-[4.25rem] w-[4.25rem] rounded-full shadow-md ring-1 ring-foreground/15 ring-offset-4 ring-offset-card"
+                        className="h-12 w-12 rounded-full border border-foreground/20 shadow-md ring-1 ring-foreground/10 ring-offset-2 ring-offset-card sm:h-[4.25rem] sm:w-[4.25rem] sm:ring-offset-4"
                         style={{ backgroundColor: c.hex }}
                       />
-                      <span className="text-[0.95rem] text-muted-foreground">{c.name}</span>
+                      <span className="text-center text-[0.78rem] leading-snug font-medium text-foreground sm:text-[0.95rem]">
+                        {c.name}
+                      </span>
                     </div>
                   ))}
                 </div>
