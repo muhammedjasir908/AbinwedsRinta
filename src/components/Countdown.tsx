@@ -54,7 +54,9 @@ export function Countdown({
         {labels.map((u, i) => (
           <div key={u} className="flex items-start">
             {compact && i > 0 && (
-              <span className="font-display px-1 text-3xl leading-none text-primary sm:text-4xl">·</span>
+              <span className="font-caps px-1 text-3xl font-semibold leading-none text-foreground sm:text-4xl">
+                ·
+              </span>
             )}
             <div
               className={
@@ -64,17 +66,19 @@ export function Countdown({
               }
             >
               <span
-                className={`font-display font-normal tabular-nums leading-none text-foreground ${
-                  compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"
+                className={`tabular-nums leading-none text-foreground ${
+                  compact
+                    ? "font-caps text-3xl font-semibold sm:text-4xl"
+                    : "font-display text-4xl font-normal sm:text-5xl"
                 }`}
               >
                 {parts ? String(parts[i]).padStart(2, "0") : "--"}
               </span>
               <span
-                className={`font-caps font-medium uppercase ${
+                className={`font-caps uppercase ${
                   compact
-                    ? "mt-1.5 text-[0.7rem] tracking-[0.18em] text-muted-foreground"
-                    : "mt-2.5 text-[0.75rem] tracking-[0.18em] text-muted-foreground"
+                    ? "mt-1.5 text-[0.7rem] font-semibold tracking-[0.18em] text-foreground"
+                    : "mt-2.5 text-[0.75rem] font-medium tracking-[0.18em] text-muted-foreground"
                 }`}
               >
                 {u}
