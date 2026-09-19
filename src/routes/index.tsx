@@ -460,10 +460,29 @@ function Invitation() {
             St Basil Church, Manimala
           </p>
         </div>
+        <a
+          href="#invitation"
+          className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-1 text-foreground"
+          aria-label="Scroll down to see invitation details"
+        >
+          <span className="font-caps text-[0.68rem] font-semibold tracking-[0.22em] uppercase">
+            Scroll
+          </span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="animate-scroll-hint h-7 w-7 motion-reduce:animate-none"
+            aria-hidden
+          >
+            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </a>
       </header>
 
       {/* Invite letter */}
-      <section className="relative z-10 border-b border-primary/20 px-6 py-16 text-center sm:py-20">
+      <section id="invitation" className="relative z-10 border-b border-primary/20 px-6 py-16 text-center sm:py-20">
         <Reveal>
           <p className="font-caps text-[0.8rem] font-medium tracking-[0.28em] text-primary uppercase">
             — Wedding invitation —

@@ -17,6 +17,7 @@
   --animate-petal: petal-fall linear infinite;
   --animate-rise: rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-glow: glow 4s ease-in-out infinite;
+  --animate-scroll-hint: bounce-down 1.6s ease-in-out infinite;
 }
 
 @keyframes petal-fall {
@@ -54,6 +55,16 @@
   }
   50% {
     opacity: 0.75;
+  }
+}
+
+@keyframes bounce-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
   }
 }
 
