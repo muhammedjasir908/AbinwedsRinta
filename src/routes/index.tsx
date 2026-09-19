@@ -146,16 +146,22 @@ const dressCode = [
     event: "Engagement",
     note: "Thursday, 29 October 2026",
     colors: [
-      { name: "Dusty Rose", hex: "#C9A0A4" },
-      { name: "Champagne", hex: "#E7D6BC" },
+      { name: "Coral", hex: "#F16F62" },
+      { name: "Watermelon", hex: "#EF5D67" },
+      { name: "Sunset Coral", hex: "#F06C55" },
+      { name: "Dusty Coral", hex: "#EA8275" },
+      { name: "Peach", hex: "#F69A71" },
     ],
   },
   {
     event: "Wedding",
     note: "Thursday, 5 November 2026",
     colors: [
-      { name: "Deep Emerald", hex: "#22453B" },
-      { name: "Antique Gold", hex: "#B08A45" },
+      { name: "Baby Blue", hex: "#CEF4F7" },
+      { name: "Lavender", hex: "#D1CCEC" },
+      { name: "Blush", hex: "#FED3DA" },
+      { name: "Cream", hex: "#FEF0D6" },
+      { name: "Mint", hex: "#C5EBD4" },
     ],
   },
 ];
@@ -644,7 +650,7 @@ function Invitation() {
               <div className="card-paper px-7 py-9 text-center">
                 <h3 className="font-script text-4xl text-foreground">{d.event}</h3>
                 <p className="mt-2 text-[1.05rem] text-muted-foreground italic">{d.note}</p>
-                <div className="mt-8 flex justify-center gap-8">
+                <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-6">
                   {d.colors.map((c) => (
                     <div key={c.name} className="flex flex-col items-center gap-3">
                       <span
