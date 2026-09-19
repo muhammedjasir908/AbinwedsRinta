@@ -1,5 +1,5 @@
 import { useEffect, useImperativeHandle, useRef, useState, forwardRef } from "react";
-import song from "@/assets/song.mp3";
+import song from "@/assets/bgm-song.mp3";
 
 export type BgmPlayerHandle = {
   play: () => void;

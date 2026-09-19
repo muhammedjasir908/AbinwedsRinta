@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Plus } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { cn } from "@/lib/utils";
 
 export interface PartyMemberData {
   name: string;
@@ -16,7 +17,7 @@ interface WeddingPartyProps {
   bridesmaids: PartyMemberData[];
 }
 
-function PartyCard({ member }: { member: PartyMemberData }) {
+function PartyCard({ member, className }: { member: PartyMemberData; className?: string }) {
   const [imgError, setImgError] = useState(false);
   const hasPhoto = Boolean(member.photo && !imgError);
   const wide = Boolean(member.wide);
@@ -24,9 +25,11 @@ function PartyCard({ member }: { member: PartyMemberData }) {
   return (
     <div
       key={member.name}
-      className={`group relative flex flex-shrink-0 flex-col items-center rounded-[16px] border border-primary/25 bg-[#fff5f7] px-3.5 pt-5 pb-4 text-center shadow-[0_1px_8px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-foreground/35 hover:shadow-md dark:border-primary/20 dark:bg-card/75 ${
-        wide ? "w-[188px]" : "w-[152px]"
-      }`}
+      className={cn(
+        "group relative flex flex-shrink-0 flex-col items-center rounded-[16px] border border-primary/25 bg-[#fff5f7] px-3.5 pt-5 pb-4 text-center shadow-[0_1px_8px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-foreground/35 hover:shadow-md dark:border-primary/20 dark:bg-card/75",
+        wide ? "w-[188px]" : "w-[152px]",
+        className,
+      )}
     >
       <div
         className={`relative mx-auto mb-3.5 flex-shrink-0 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.22)] ring-2 ring-background ${
@@ -151,25 +154,44 @@ export function KidsTeam({
 }: {
   kids: { name: string; role: string; gradient: string; photo?: string | null; wide?: boolean }[];
 }) {
+  const [lead, ...rest] = kids;
+
   return (
     <div className="mt-12">
       <div className="font-caps mb-5 flex items-center justify-center gap-2.5 px-6 text-[0.8rem] font-medium tracking-[0.22em] text-primary uppercase">
         <span className="text-base leading-none">🌸</span>
         <span>Our Kids Team</span>
       </div>
-      <div className="flex flex-wrap justify-center gap-3.5 px-6 py-2 sm:gap-4">
-        {kids.map((kid) => (
+      <div className="flex flex-col items-center gap-3.5 px-6 py-2 sm:gap-4">
+        {lead ? (
           <PartyCard
-            key={kid.name}
+            key={lead.name}
             member={{
-              name: kid.name,
-              role: kid.role,
-              gradient: kid.gradient,
-              photo: kid.photo ?? null,
-              wide: kid.wide,
+              name: lead.name,
+              role: lead.role,
+              gradient: lead.gradient,
+              photo: lead.photo ?? null,
+              wide: lead.wide,
             }}
           />
-        ))}
+        ) : null}
+        {rest.length > 0 ? (
+          <div className="flex w-full max-w-[340px] flex-nowrap justify-center gap-3.5 sm:gap-4">
+            {rest.map((kid) => (
+              <PartyCard
+                key={kid.name}
+                className="w-[calc(50%-0.44rem)] max-w-[152px] min-w-0 shrink"
+                member={{
+                  name: kid.name,
+                  role: kid.role,
+                  gradient: kid.gradient,
+                  photo: kid.photo ?? null,
+                  wide: kid.wide,
+                }}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );

@@ -349,12 +349,6 @@ function Invitation() {
       <PetalRain />
       <BgmPlayer ref={bgmRef} />
 
-      {opened && (
-        <div className="fixed top-3 left-1/2 z-50 -translate-x-1/2">
-          <BrandLogo size={56} className="h-14 w-14 drop-shadow-sm" />
-        </div>
-      )}
-
       {/* Landing gate */}
       <div
         className={`fixed inset-0 z-40 overflow-hidden bg-[#fdf3f6] text-center transition-all duration-1000 ${
@@ -381,7 +375,7 @@ function Invitation() {
               November 2026
             </span>
             <div className="mt-3">
-              <BrandLogo size={168} className="h-28 w-28 sm:h-36 sm:w-36" />
+              <BrandLogo size={56} />
             </div>
             <p className="font-caps mt-2 text-[0.78rem] font-medium tracking-[0.32em] text-primary uppercase">
               — With love —
@@ -438,6 +432,7 @@ function Invitation() {
         <div className="absolute inset-0 bg-[#fdf3f6]/45" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#fdf3f6]/30 via-[#fdf3f6]/50 to-[#fdf3f6]/80" />
         <div className="animate-rise relative z-10 max-w-xl text-center">
+          <BrandLogo size={56} className="mx-auto mb-5" />
           <p className="font-caps text-sm font-semibold tracking-[0.32em] text-primary uppercase sm:text-base">
             The Wedding Celebration of
           </p>
@@ -672,7 +667,7 @@ function Invitation() {
       {/* Closing */}
       <footer className="relative z-10 px-6 py-20 text-center">
         <Reveal>
-          <BrandLogo size={112} className="mx-auto mb-4 h-24 w-24" />
+          <BrandLogo size={56} className="mx-auto mb-4" />
           <p className="font-caps text-[0.78rem] tracking-[0.28em] text-muted-foreground uppercase">
             With love and gratitude
           </p>
