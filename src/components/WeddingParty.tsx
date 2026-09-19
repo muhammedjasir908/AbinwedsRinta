@@ -214,7 +214,7 @@ export function WeddingParty({ groomsmen, bridesmaids }: WeddingPartyProps) {
 
         <div className="mt-12">
           <PartyTrack title="Groomsmen" icon="🤵" members={groomsmen} addLabel="Add groomsman" />
-          <PartyTrack title="Bridesmaids" icon="💐" members={bridesmaids} addLabel="Add bridesmaid" />
+          <PartyTrack title="Bridesmaids" icon="💐" members={bridesmaids} />
 
           <div className="mx-auto my-10 flex max-w-xs items-center justify-center gap-3.5 px-6">
             <span className="h-[1px] w-20 max-w-[76px] flex-1 bg-primary/25" />

@@ -204,7 +204,7 @@ const bridesmaids: PartyMemberData[] = [
     gradient: "linear-gradient(135deg, #cb7394, #eeb4c7)",
   },
   {
-    name: "",
+    name: "Sheethal Mathew",
     photo: bridesmaid8,
     gradient: "linear-gradient(135deg, #d47a9a, #efb6c9)",
   },
