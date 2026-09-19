@@ -1,30 +1,38 @@
 import { useRef, useState } from "react";
+import { Plus } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
 export interface PartyMemberData {
   name: string;
-  role: string;
+  role?: string;
   isLead?: boolean;
   photo?: string | null;
   gradient: string;
+  wide?: boolean;
 }
 
 interface WeddingPartyProps {
   groomsmen: PartyMemberData[];
   bridesmaids: PartyMemberData[];
-  kidsTeam: { name: string; role: string; gradient: string }[];
 }
 
 function PartyCard({ member }: { member: PartyMemberData }) {
   const [imgError, setImgError] = useState(false);
   const hasPhoto = Boolean(member.photo && !imgError);
+  const wide = Boolean(member.wide);
 
   return (
     <div
       key={member.name}
-      className="group relative flex w-[152px] flex-shrink-0 flex-col items-center rounded-[16px] border border-primary/25 bg-[#fff5f7] px-3.5 pt-5 pb-4 text-center shadow-[0_1px_8px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-foreground/35 hover:shadow-md dark:border-primary/20 dark:bg-card/75"
+      className={`group relative flex flex-shrink-0 flex-col items-center rounded-[16px] border border-primary/25 bg-[#fff5f7] px-3.5 pt-5 pb-4 text-center shadow-[0_1px_8px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-foreground/35 hover:shadow-md dark:border-primary/20 dark:bg-card/75 ${
+        wide ? "w-[188px]" : "w-[152px]"
+      }`}
     >
-      <div className="relative mx-auto mb-3.5 h-[68px] w-[68px] flex-shrink-0 overflow-hidden rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.22)] ring-2 ring-background">
+      <div
+        className={`relative mx-auto mb-3.5 flex-shrink-0 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.22)] ring-2 ring-background ${
+          wide ? "h-[118px] w-[118px] rounded-[22px]" : "h-[68px] w-[68px] rounded-full"
+        }`}
+      >
         {hasPhoto ? (
           <img
             src={member.photo!}
@@ -47,13 +55,26 @@ function PartyCard({ member }: { member: PartyMemberData }) {
         {member.name}
       </h4>
 
-      <p
-        className={`mt-1.5 text-[0.92rem] ${
-          member.isLead ? "font-semibold text-foreground" : "text-muted-foreground"
-        }`}
-      >
-        {member.role}
-      </p>
+      {member.role ? (
+        <p
+          className={`mt-1.5 text-[0.92rem] ${
+            member.isLead ? "font-semibold text-foreground" : "text-muted-foreground"
+          }`}
+        >
+          {member.role}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function AddPartyCard({ label }: { label: string }) {
+  return (
+    <div className="flex w-[152px] flex-shrink-0 flex-col items-center rounded-[16px] border border-dashed border-primary/40 bg-[#fff5f7]/80 px-3.5 pt-5 pb-4 text-center shadow-[0_1px_8px_rgba(0,0,0,0.04)] dark:border-primary/25 dark:bg-card/50">
+      <div className="relative mx-auto mb-3.5 flex h-[68px] w-[68px] flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-primary/45 bg-primary/10">
+        <Plus className="h-7 w-7 text-primary" strokeWidth={1.75} />
+      </div>
+      <h4 className="font-display text-[1.05rem] leading-snug text-muted-foreground">{label}</h4>
     </div>
   );
 }
@@ -62,10 +83,12 @@ function PartyTrack({
   title,
   icon,
   members,
+  addLabel,
 }: {
   title: string;
   icon: string;
   members: PartyMemberData[];
+  addLabel?: string;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -116,13 +139,43 @@ function PartyTrack({
           {members.map((member) => (
             <PartyCard key={member.name} member={member} />
           ))}
+          {addLabel ? <AddPartyCard label={addLabel} /> : null}
         </div>
       </div>
     </div>
   );
 }
 
-export function WeddingParty({ groomsmen, bridesmaids, kidsTeam }: WeddingPartyProps) {
+export function KidsTeam({
+  kids,
+}: {
+  kids: { name: string; role: string; gradient: string; photo?: string | null; wide?: boolean }[];
+}) {
+  return (
+    <div className="mt-12">
+      <div className="font-caps mb-5 flex items-center justify-center gap-2.5 px-6 text-[0.8rem] font-medium tracking-[0.22em] text-primary uppercase">
+        <span className="text-base leading-none">🌸</span>
+        <span>Our Kids Team</span>
+      </div>
+      <div className="flex flex-wrap justify-center gap-3.5 px-6 py-2 sm:gap-4">
+        {kids.map((kid) => (
+          <PartyCard
+            key={kid.name}
+            member={{
+              name: kid.name,
+              role: kid.role,
+              gradient: kid.gradient,
+              photo: kid.photo ?? null,
+              wide: kid.wide,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function WeddingParty({ groomsmen, bridesmaids }: WeddingPartyProps) {
   return (
     <section className="relative z-10 border-b border-primary/20 py-16 text-center sm:py-24">
       <Reveal>
@@ -136,34 +189,9 @@ export function WeddingParty({ groomsmen, bridesmaids, kidsTeam }: WeddingPartyP
         </div>
 
         <div className="mt-12">
-          {/* Groomsmen track */}
-          <PartyTrack title="Groomsmen" icon="🤵" members={groomsmen} />
+          <PartyTrack title="Groomsmen" icon="🤵" members={groomsmen} addLabel="Add groomsman" />
+          <PartyTrack title="Bridesmaids" icon="💐" members={bridesmaids} addLabel="Add bridesmaid" />
 
-          {/* Bridesmaids track */}
-          <PartyTrack title="Bridesmaids" icon="💐" members={bridesmaids} />
-
-          {/* Kids Team */}
-          <div className="mb-8">
-            <div className="font-caps mb-5 flex items-center justify-center gap-2.5 px-6 text-[0.8rem] font-medium tracking-[0.22em] text-primary uppercase">
-              <span className="text-base leading-none">🌸</span>
-              <span>Our Kids Team</span>
-            </div>
-            <div className="flex flex-wrap justify-center gap-3.5 px-6 py-2 sm:gap-4">
-              {kidsTeam.map((kid) => (
-                <PartyCard
-                  key={kid.name}
-                  member={{
-                    name: kid.name,
-                    role: kid.role,
-                    gradient: kid.gradient,
-                    photo: null,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Elegant gold rule with centered dot divider */}
           <div className="mx-auto my-10 flex max-w-xs items-center justify-center gap-3.5 px-6">
             <span className="h-[1px] w-20 max-w-[76px] flex-1 bg-primary/25" />
             <div className="h-1.5 w-1.5 rounded-full bg-primary" />

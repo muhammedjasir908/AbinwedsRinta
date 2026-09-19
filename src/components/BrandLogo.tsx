@@ -15,7 +15,7 @@ export function BrandLogo({
       alt={alt}
       width={size}
       height={size}
-      className={`select-none object-contain ${className}`}
+      className={`select-none object-contain mix-blend-multiply ${className}`}
     />
   );
 }

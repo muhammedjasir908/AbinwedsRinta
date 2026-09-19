@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { PetalRain } from "@/components/PetalRain";
 import { Countdown } from "@/components/Countdown";
 import { Reveal } from "@/components/Reveal";
-import { WeddingParty, type PartyMemberData } from "@/components/WeddingParty";
+import { KidsTeam, WeddingParty, type PartyMemberData } from "@/components/WeddingParty";
 import { GallerySection } from "@/components/GallerySection";
 import { BgmPlayer, type BgmPlayerHandle } from "@/components/BgmPlayer";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -28,6 +28,9 @@ import groomsman4 from "@/assets/groomsman-4.webp";
 import groomsman5 from "@/assets/groomsman-5.webp";
 import groomsman6 from "@/assets/groomsman-6.webp";
 import groomsman7 from "@/assets/groomsman-7.webp";
+import zairahAndZakh from "@/assets/Zairah-and-Zakh.webp";
+import jeremiah from "@/assets/Jeremiah.webp";
+import donPaul from "@/assets/Don-Paul.webp";
 import img1 from "@/assets/img-1.webp";
 import img2 from "@/assets/img-2.webp";
 import img3 from "@/assets/img-3.webp";
@@ -120,7 +123,7 @@ const occasions = [
         icon: "pin" as const,
         label: "Reception",
         value: "Holy Magi Forane Church Auditorium, Manimala",
-        sub: "Followed by the ceremony",
+        sub: "6:30 PM onwards",
       },
     ],
     actions: [
@@ -140,16 +143,16 @@ const occasions = [
 
 const dressCode = [
   {
-    side: "Bride's Side",
-    note: "Bridesmaids",
+    event: "Engagement",
+    note: "Thursday, 29 October 2026",
     colors: [
       { name: "Dusty Rose", hex: "#C9A0A4" },
       { name: "Champagne", hex: "#E7D6BC" },
     ],
   },
   {
-    side: "Groom's Side",
-    note: "Groomsmen",
+    event: "Wedding",
+    note: "Thursday, 5 November 2026",
     colors: [
       { name: "Deep Emerald", hex: "#22453B" },
       { name: "Antique Gold", hex: "#B08A45" },
@@ -160,44 +163,36 @@ const dressCode = [
 const bridesmaids: PartyMemberData[] = [
   {
     name: "Raima Johnny",
-    role: "Maid of Honor",
-    isLead: true,
     photo: bridesmaid1,
     gradient: "linear-gradient(135deg, #c76b8e, #eab4c4)",
   },
   {
     name: "Angela Merin Tom",
-    role: "Bridesmaid",
     photo: bridesmaid2,
     gradient: "linear-gradient(135deg, #d885a0, #f0b9cb)",
   },
   {
     name: "Dona Christy",
-    role: "Bridesmaid",
     photo: bridesmaid3,
     gradient: "linear-gradient(135deg, #d07a99, #eeb6c8)",
   },
   {
     name: "Aryamol Sajeev",
-    role: "Bridesmaid",
     photo: bridesmaid4,
     gradient: "linear-gradient(135deg, #cf7c98, #e9aec0)",
   },
   {
     name: "Saina Saji",
-    role: "Bridesmaid",
     photo: bridesmaid5,
     gradient: "linear-gradient(135deg, #c96f90, #ecb2c6)",
   },
   {
     name: "Anugraha Ann",
-    role: "Bridesmaid",
     photo: bridesmaid6,
     gradient: "linear-gradient(135deg, #dc8aa6, #f2bdce)",
   },
   {
     name: "Reva Mariam",
-    role: "Bridesmaid",
     photo: bridesmaid7,
     gradient: "linear-gradient(135deg, #cb7394, #eeb4c7)",
   },
@@ -206,44 +201,36 @@ const bridesmaids: PartyMemberData[] = [
 const groomsmen: PartyMemberData[] = [
   {
     name: "Sidhu K S",
-    role: "Best Man",
-    isLead: true,
     photo: groomsman1,
     gradient: "linear-gradient(135deg, #12203c, #3c5a8a)",
   },
   {
     name: "Anil Abraham",
-    role: "Groomsman",
     photo: groomsman2,
     gradient: "linear-gradient(135deg, #1a3a6b, #6e9ac9)",
   },
   {
     name: "Rohan Varghese",
-    role: "Groomsman",
     photo: groomsman3,
     gradient: "linear-gradient(135deg, #162e58, #5a88b5)",
   },
   {
     name: "Mobin Thomas",
-    role: "Groomsman",
     photo: groomsman4,
     gradient: "linear-gradient(135deg, #1a2858, #5880b0)",
   },
   {
     name: "Geevarghese Joffy",
-    role: "Groomsman",
     photo: groomsman5,
     gradient: "linear-gradient(135deg, #163052, #5a86b0)",
   },
   {
     name: "Jerry Alexander",
-    role: "Groomsman",
     photo: groomsman6,
     gradient: "linear-gradient(135deg, #14264a, #4a72a4)",
   },
   {
     name: "Ashish PV",
-    role: "Groomsman",
     photo: groomsman7,
     gradient: "linear-gradient(135deg, #18325c, #6090c0)",
   },
@@ -251,23 +238,22 @@ const groomsmen: PartyMemberData[] = [
 
 const kidsTeam = [
   {
-    name: "Zairah",
-    role: "Flower Girl",
+    name: "Zairah & Zakh",
+    role: "Flower Girl & Ring Bearer",
+    photo: zairahAndZakh,
+    wide: true,
     gradient: "linear-gradient(135deg, #d18aa8, #f0bcd0)",
   },
   {
-    name: "Zakh",
+    name: "Jeremiah",
     role: "Ring Bearer",
-    gradient: "linear-gradient(135deg, #16294d, #5b85b8)",
-  },
-  {
-    name: "Jermariah",
-    role: "Ring Bearer",
+    photo: jeremiah,
     gradient: "linear-gradient(135deg, #1a3a6b, #6e9ac9)",
   },
   {
     name: "Don Paul",
     role: "Ring Bearer",
+    photo: donPaul,
     gradient: "linear-gradient(135deg, #162e58, #5a88b5)",
   },
 ];
@@ -365,9 +351,7 @@ function Invitation() {
 
       {opened && (
         <div className="fixed top-3 left-1/2 z-50 -translate-x-1/2">
-          <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-primary/35 bg-[#fdf3f6] shadow-md">
-            <BrandLogo size={48} className="h-12 w-12" />
-          </div>
+          <BrandLogo size={56} className="h-14 w-14 drop-shadow-sm" />
         </div>
       )}
 
@@ -397,7 +381,7 @@ function Invitation() {
               November 2026
             </span>
             <div className="mt-3">
-              <BrandLogo size={132} className="h-[7.5rem] w-[7.5rem] sm:h-36 sm:w-36" />
+              <BrandLogo size={168} className="h-28 w-28 sm:h-36 sm:w-36" />
             </div>
             <p className="font-caps mt-2 text-[0.78rem] font-medium tracking-[0.32em] text-primary uppercase">
               — With love —
@@ -454,7 +438,6 @@ function Invitation() {
         <div className="absolute inset-0 bg-[#fdf3f6]/45" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#fdf3f6]/30 via-[#fdf3f6]/50 to-[#fdf3f6]/80" />
         <div className="animate-rise relative z-10 max-w-xl text-center">
-          <BrandLogo size={108} className="mx-auto mb-4 h-24 w-24" />
           <p className="font-caps text-sm font-semibold tracking-[0.32em] text-primary uppercase sm:text-base">
             The Wedding Celebration of
           </p>
@@ -651,83 +634,24 @@ function Invitation() {
       {/* Families */}
       <section className="relative z-10 border-b border-primary/20 px-6 py-16 sm:py-24">
         <SectionTitle kicker="Meet our families" title="With Blessings From" />
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
-          {[
-            {
-              role: "The Groom · Kadayanikkadu, Kottayam",
-              name: "Abin Jacob",
-              initial: "A",
-              gradient: "linear-gradient(135deg, #12203c, #3c5a8a)",
-              parents: "Varghese Chacko & Leelamma Chacko",
-              house: "Thottiyil House, Kadayanikkadu, Kottayam",
-            },
-            {
-              role: "The Bride · Eraviperoor, Thiruvalla",
-              name: "Rinta Ansu Kuriakose",
-              initial: "R",
-              gradient: "linear-gradient(135deg, #c76b8e, #eab4c4)",
-              parents: "Late T. C. Kuriakose & Sobhana Kuriakose",
-              house: "Thengelimannil House, Eraviperoor, Thiruvalla",
-            },
-          ].map((p, i) => (
-            <Reveal key={p.name} delay={i * 150}>
-              <article className="card-paper h-full p-6 text-left sm:p-8">
-                <div className="mb-5 flex items-center gap-4 border-b border-dashed border-foreground/20 pb-4">
-                  <div className="rounded-full bg-gradient-to-br from-[#1a2744] via-primary to-[#253459] p-[3px]">
-                    <div
-                      className="flex h-16 w-16 items-center justify-center rounded-full font-display text-3xl text-white ring-[3px] ring-background"
-                      style={{ background: p.gradient }}
-                    >
-                      {p.initial}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-[1.55rem] leading-tight text-foreground">{p.name}</h3>
-                    <p className="mt-1 text-[1.05rem] leading-snug text-muted-foreground">{p.role}</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <span className="font-caps mb-1 block text-[0.72rem] font-semibold tracking-[0.2em] text-primary uppercase">
-                      Parents
-                    </span>
-                    <p className="text-lg leading-snug text-foreground sm:text-xl">{p.parents}</p>
-                  </div>
-                  <div className="my-1 flex items-center gap-2.5 opacity-40">
-                    <span className="h-px flex-1 bg-primary" />
-                    <span className="text-xs text-primary">✦</span>
-                    <span className="h-px flex-1 bg-primary" />
-                  </div>
-                  <div>
-                    <span className="font-caps mb-1 block text-[0.72rem] font-semibold tracking-[0.2em] text-primary uppercase">
-                      Residence
-                    </span>
-                    <p className="text-lg leading-relaxed text-muted-foreground italic">{p.house}</p>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <KidsTeam kids={kidsTeam} />
       </section>
 
       {/* Wedding party */}
-      <WeddingParty groomsmen={groomsmen} bridesmaids={bridesmaids} kidsTeam={kidsTeam} />
+      <WeddingParty groomsmen={groomsmen} bridesmaids={bridesmaids} />
 
       {/* Colour code */}
       <section className="relative z-10 border-y border-primary/20 bg-secondary/40 px-6 py-16 sm:py-24">
         <SectionTitle kicker="Dress code" title="Colour Code" />
-        <p className="mx-auto mt-4 max-w-[38ch] text-center text-xl leading-relaxed text-muted-foreground italic">
-          We kindly encourage our guests to wear these colours for our special day.
+        <p className="mx-auto mt-4 max-w-[40ch] text-center text-xl leading-relaxed text-muted-foreground italic">
+          We kindly encourage our guests to wear these colours for our special days.
         </p>
         <div className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">
           {dressCode.map((d, i) => (
-            <Reveal key={d.side} delay={i * 150}>
+            <Reveal key={d.event} delay={i * 150}>
               <div className="card-paper px-7 py-9 text-center">
-                <h3 className="font-script text-4xl text-foreground">{d.side}</h3>
-                <p className="font-caps mt-2 text-[0.78rem] font-medium tracking-[0.2em] text-foreground uppercase">
-                  {d.note}
-                </p>
+                <h3 className="font-script text-4xl text-foreground">{d.event}</h3>
+                <p className="mt-2 text-[1.05rem] text-muted-foreground italic">{d.note}</p>
                 <div className="mt-8 flex justify-center gap-8">
                   {d.colors.map((c) => (
                     <div key={c.name} className="flex flex-col items-center gap-3">
@@ -743,11 +667,6 @@ function Invitation() {
             </Reveal>
           ))}
         </div>
-        <Reveal delay={200}>
-          <p className="mx-auto mt-10 max-w-xl text-center text-lg text-muted-foreground italic">
-            Our seven bridesmaids and seven groomsmen will be dressed in these colours.
-          </p>
-        </Reveal>
       </section>
 
       {/* Closing */}
