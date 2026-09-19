@@ -21,6 +21,7 @@ import bridesmaid4 from "@/assets/bridesmaid-4.webp";
 import bridesmaid5 from "@/assets/bridesmaid-5.webp";
 import bridesmaid6 from "@/assets/bridesmaid-6.webp";
 import bridesmaid7 from "@/assets/bridesmaid-7.webp";
+import bridesmaid8 from "@/assets/bridesmaid-8.webp";
 import groomsman1 from "@/assets/groomsman-1.webp";
 import groomsman2 from "@/assets/groomsman-2.webp";
 import groomsman3 from "@/assets/groomsman-3.webp";
@@ -201,6 +202,11 @@ const bridesmaids: PartyMemberData[] = [
     name: "Reva Mariam",
     photo: bridesmaid7,
     gradient: "linear-gradient(135deg, #cb7394, #eeb4c7)",
+  },
+  {
+    name: "",
+    photo: bridesmaid8,
+    gradient: "linear-gradient(135deg, #d47a9a, #efb6c9)",
   },
 ];
 

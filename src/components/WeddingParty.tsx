@@ -39,7 +39,7 @@ function PartyCard({ member, className }: { member: PartyMemberData; className?:
         {hasPhoto ? (
           <img
             src={member.photo!}
-            alt={member.name}
+            alt={member.name || "Bridesmaid"}
             loading="lazy"
             onError={() => setImgError(true)}
             className="h-full w-full object-cover"
@@ -54,9 +54,11 @@ function PartyCard({ member, className }: { member: PartyMemberData; className?:
         )}
       </div>
 
-      <h4 className="font-display text-[1.05rem] leading-snug text-foreground transition-colors group-hover:text-primary">
-        {member.name}
-      </h4>
+      {member.name ? (
+        <h4 className="font-display text-[1.05rem] leading-snug text-foreground transition-colors group-hover:text-primary">
+          {member.name}
+        </h4>
+      ) : null}
 
       {member.role ? (
         <p
@@ -139,8 +141,8 @@ function PartyTrack({
         }`}
       >
         <div className="flex w-max min-w-full justify-start gap-3.5 px-6 py-2 pb-4 sm:gap-4 md:justify-center">
-          {members.map((member) => (
-            <PartyCard key={member.name} member={member} />
+          {members.map((member, i) => (
+            <PartyCard key={member.photo ?? member.name ?? i} member={member} />
           ))}
           {addLabel ? <AddPartyCard label={addLabel} /> : null}
         </div>
