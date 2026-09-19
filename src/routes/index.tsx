@@ -8,6 +8,7 @@ import { GallerySection } from "@/components/GallerySection";
 import { BgmPlayer, type BgmPlayerHandle } from "@/components/BgmPlayer";
 import { BrandLogo } from "@/components/BrandLogo";
 import {
+  OG_IMAGE_URL,
   SITE_DESCRIPTION,
   SITE_PAGE_TITLE,
   SITE_TITLE,
@@ -29,6 +30,9 @@ import groomsman4 from "@/assets/groomsman-4.webp";
 import groomsman5 from "@/assets/groomsman-5.webp";
 import groomsman6 from "@/assets/groomsman-6.webp";
 import groomsman7 from "@/assets/groomsman-7.webp";
+import groomsman8 from "@/assets/groomsman-8.webp";
+import engagementColor from "@/assets/engagement-color.webp";
+import weddingColor from "@/assets/wedding-color.webp";
 import zairahAndZakh from "@/assets/Zairah-and-Zakh.webp";
 import jeremiah from "@/assets/Jeremiah.webp";
 import donPaul from "@/assets/Don-Paul.webp";
@@ -42,7 +46,6 @@ import img7 from "@/assets/img-7.webp";
 
 export const Route = createFileRoute("/")({
   head: () => {
-    const ogImage = `${absoluteUrl("og-thumb.webp")}?v=2`;
     const pageUrl = absoluteUrl("");
     return {
       meta: [
@@ -53,14 +56,16 @@ export const Route = createFileRoute("/")({
         { property: "og:type", content: "website" },
         { property: "og:url", content: pageUrl },
         { property: "og:site_name", content: "Abin & Rinta" },
-        { property: "og:image", content: ogImage },
-        { property: "og:image:secure_url", content: ogImage },
-        { property: "og:image:type", content: "image/webp" },
+        { property: "og:image", content: OG_IMAGE_URL },
+        { property: "og:image:secure_url", content: OG_IMAGE_URL },
+        { property: "og:image:type", content: "image/jpeg" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
         { property: "og:image:alt", content: "Abin and Rinta wedding invitation" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: SITE_TITLE },
         { name: "twitter:description", content: SITE_DESCRIPTION },
-        { name: "twitter:image", content: ogImage },
+        { name: "twitter:image", content: OG_IMAGE_URL },
       ],
     };
   },
@@ -75,7 +80,12 @@ const occasions = [
       {
         icon: "calendar" as const,
         label: "Date & time",
-        value: "Thursday, 29 October 2026",
+        value: (
+          <>
+            Thursday,{" "}
+            <span className="font-body font-bold">29th October 2026</span>
+          </>
+        ),
         sub: "4:00 PM onwards",
       },
       {
@@ -111,7 +121,12 @@ const occasions = [
       {
         icon: "calendar" as const,
         label: "Date",
-        value: "Thursday, 5 November 2026",
+        value: (
+          <>
+            Thursday,{" "}
+            <span className="font-body font-bold">5th November 2026</span>
+          </>
+        ),
         sub: "3:30 PM onwards",
       },
       {
@@ -124,7 +139,7 @@ const occasions = [
         icon: "pin" as const,
         label: "Reception",
         value: "Holy Magi Forane Church Auditorium, Manimala",
-        sub: "6:30 PM onwards",
+        sub: "6:00 PM onwards",
       },
     ],
     actions: [
@@ -145,25 +160,23 @@ const occasions = [
 const dressCode = [
   {
     event: "Engagement",
-    note: "Thursday, 29 October 2026",
-    colors: [
-      { name: "Coral", hex: "#F16F62" },
-      { name: "Watermelon", hex: "#EF5D67" },
-      { name: "Sunset Coral", hex: "#F06C55" },
-      { name: "Dusty Coral", hex: "#EA8275" },
-      { name: "Peach", hex: "#F69A71" },
-    ],
+    note: (
+      <>
+        Thursday, <span className="font-bold not-italic">29 October</span> 2026
+      </>
+    ),
+    image: engagementColor,
+    alt: "Engagement colour palette",
   },
   {
     event: "Wedding",
-    note: "Thursday, 5 November 2026",
-    colors: [
-      { name: "Baby Blue", hex: "#CEF4F7" },
-      { name: "Lavender", hex: "#D1CCEC" },
-      { name: "Blush Pink", hex: "#FED3DA" },
-      { name: "Cream", hex: "#FEF0D6" },
-      { name: "Mint Green", hex: "#C5EBD4" },
-    ],
+    note: (
+      <>
+        Thursday, <span className="font-bold not-italic">5 November</span> 2026
+      </>
+    ),
+    image: weddingColor,
+    alt: "Wedding colour palette",
   },
 ];
 
@@ -246,6 +259,11 @@ const groomsmen: PartyMemberData[] = [
     photo: groomsman7,
     gradient: "linear-gradient(135deg, #18325c, #6090c0)",
   },
+  {
+    name: "",
+    photo: groomsman8,
+    gradient: "linear-gradient(135deg, #1a365e, #5a82b8)",
+  },
 ];
 
 const kidsTeam = [
@@ -287,13 +305,17 @@ function Divider() {
   );
 }
 
-function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
+function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
   return (
     <div className="px-6 text-center">
-      <p className="font-caps text-[0.8rem] font-medium tracking-[0.28em] text-primary uppercase">
-        — {kicker} —
-      </p>
-      <h2 className="font-script mt-3 text-[3.25rem] leading-[1.08] text-foreground sm:text-6xl">
+      {kicker ? (
+        <p className="font-caps text-[0.8rem] font-medium tracking-[0.28em] text-primary uppercase">
+          — {kicker} —
+        </p>
+      ) : null}
+      <h2
+        className={`font-script text-[3.25rem] leading-[1.08] text-foreground sm:text-6xl ${kicker ? "mt-3" : ""}`}
+      >
         {title}
       </h2>
     </div>
@@ -609,7 +631,15 @@ function Invitation() {
                         <p className="font-caps text-[0.72rem] font-medium tracking-[0.2em] text-muted-foreground uppercase">
                           {row.label}
                         </p>
-                        <p className="font-display mt-0.5 text-[1.2rem] leading-snug text-foreground">{row.value}</p>
+                        <p
+                          className={`mt-0.5 leading-snug text-foreground ${
+                            row.icon === "calendar"
+                              ? "font-body text-[1.28rem]"
+                              : "font-display text-[1.2rem]"
+                          }`}
+                        >
+                          {row.value}
+                        </p>
                         {row.sub && (
                           <p className="mt-0.5 text-[1.05rem] text-muted-foreground italic">{row.sub}</p>
                         )}
@@ -653,7 +683,7 @@ function Invitation() {
 
       {/* Families */}
       <section className="relative z-10 border-b border-primary/20 px-6 py-16 sm:py-24">
-        <SectionTitle kicker="Meet our families" title="With Blessings From" />
+        <SectionTitle title="With Blessings From" />
         <KidsTeam kids={kidsTeam} />
       </section>
 
@@ -666,26 +696,21 @@ function Invitation() {
         <p className="mx-auto mt-4 max-w-[40ch] text-center text-xl leading-relaxed text-muted-foreground italic">
           We kindly encourage our guests to wear these colours for our special days.
         </p>
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6">
+        <div className="mx-auto mt-12 grid max-w-md gap-6 sm:max-w-lg">
           {dressCode.map((d, i) => (
             <Reveal key={d.event} delay={i * 150}>
-              <div className="card-paper px-5 py-9 text-center sm:px-8">
-                <h3 className="font-script text-4xl text-foreground">{d.event}</h3>
+              <article className="card-paper overflow-hidden p-3 text-center sm:p-4">
+                <h3 className="font-script pt-3 text-4xl text-foreground">{d.event}</h3>
                 <p className="mt-2 text-[1.05rem] text-muted-foreground italic">{d.note}</p>
-                <div className="mt-8 grid grid-cols-5 items-start justify-items-center gap-2 sm:gap-4">
-                  {d.colors.map((c) => (
-                    <div key={c.name} className="flex w-full max-w-[5.5rem] flex-col items-center gap-2.5">
-                      <span
-                        className="h-12 w-12 rounded-full border border-foreground/20 shadow-md ring-1 ring-foreground/10 ring-offset-2 ring-offset-card sm:h-[4.25rem] sm:w-[4.25rem] sm:ring-offset-4"
-                        style={{ backgroundColor: c.hex }}
-                      />
-                      <span className="text-center text-[0.78rem] leading-snug font-medium text-foreground sm:text-[0.95rem]">
-                        {c.name}
-                      </span>
-                    </div>
-                  ))}
+                <div className="mt-5 overflow-hidden rounded-[14px] border border-primary/20 bg-card">
+                  <img
+                    src={d.image}
+                    alt={d.alt}
+                    loading="lazy"
+                    className="h-auto w-full object-contain"
+                  />
                 </div>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>

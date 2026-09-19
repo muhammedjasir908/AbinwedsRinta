@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { Plus } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +38,7 @@ function PartyCard({ member, className }: { member: PartyMemberData; className?:
         {hasPhoto ? (
           <img
             src={member.photo!}
-            alt={member.name || "Bridesmaid"}
+            alt={member.name || "Wedding party member"}
             loading="lazy"
             onError={() => setImgError(true)}
             className="h-full w-full object-cover"
@@ -55,10 +54,14 @@ function PartyCard({ member, className }: { member: PartyMemberData; className?:
       </div>
 
       {member.name ? (
-        <h4 className="font-display text-[1.05rem] leading-snug text-foreground transition-colors group-hover:text-primary">
+        <h4 className="font-display min-h-[2.5em] text-[1.05rem] leading-snug text-foreground transition-colors group-hover:text-primary">
           {member.name}
         </h4>
-      ) : null}
+      ) : (
+        <h4 className="min-h-[2.5em]" aria-hidden>
+          {"\u00a0"}
+        </h4>
+      )}
 
       {member.role ? (
         <p
@@ -73,27 +76,14 @@ function PartyCard({ member, className }: { member: PartyMemberData; className?:
   );
 }
 
-function AddPartyCard({ label }: { label: string }) {
-  return (
-    <div className="flex w-[152px] flex-shrink-0 flex-col items-center rounded-[16px] border border-dashed border-primary/40 bg-[#fff5f7]/80 px-3.5 pt-5 pb-4 text-center shadow-[0_1px_8px_rgba(0,0,0,0.04)] dark:border-primary/25 dark:bg-card/50">
-      <div className="relative mx-auto mb-3.5 flex h-[68px] w-[68px] flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-primary/45 bg-primary/10">
-        <Plus className="h-7 w-7 text-primary" strokeWidth={1.75} />
-      </div>
-      <h4 className="font-display text-[1.05rem] leading-snug text-muted-foreground">{label}</h4>
-    </div>
-  );
-}
-
 function PartyTrack({
   title,
   icon,
   members,
-  addLabel,
 }: {
   title: string;
   icon: string;
   members: PartyMemberData[];
-  addLabel?: string;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -144,7 +134,6 @@ function PartyTrack({
           {members.map((member, i) => (
             <PartyCard key={member.photo ?? member.name ?? i} member={member} />
           ))}
-          {addLabel ? <AddPartyCard label={addLabel} /> : null}
         </div>
       </div>
     </div>
@@ -213,7 +202,7 @@ export function WeddingParty({ groomsmen, bridesmaids }: WeddingPartyProps) {
         </div>
 
         <div className="mt-12">
-          <PartyTrack title="Groomsmen" icon="🤵" members={groomsmen} addLabel="Add groomsman" />
+          <PartyTrack title="Groomsmen" icon="🤵" members={groomsmen} />
           <PartyTrack title="Bridesmaids" icon="💐" members={bridesmaids} />
 
           <div className="mx-auto my-10 flex max-w-xs items-center justify-center gap-3.5 px-6">

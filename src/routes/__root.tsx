@@ -12,10 +12,10 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import {
+  OG_IMAGE_URL,
   SITE_DESCRIPTION,
   SITE_PAGE_TITLE,
   SITE_TITLE,
-  absoluteUrl,
   publicUrl,
 } from "../lib/site";
 
@@ -81,7 +81,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => {
-    const ogImage = `${absoluteUrl("og-thumb.webp")}?v=2`;
     return {
       meta: [
         { charSet: "utf-8" },
@@ -92,14 +91,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { property: "og:title", content: SITE_TITLE },
         { property: "og:description", content: SITE_DESCRIPTION },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: ogImage },
-        { property: "og:image:secure_url", content: ogImage },
-        { property: "og:image:type", content: "image/webp" },
+        { property: "og:url", content: "https://muhammedjasir908.github.io/AbinwedsRinta/" },
+        { property: "og:site_name", content: "Abin & Rinta" },
+        { property: "og:image", content: OG_IMAGE_URL },
+        { property: "og:image:secure_url", content: OG_IMAGE_URL },
+        { property: "og:image:type", content: "image/jpeg" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
         { property: "og:image:alt", content: "Abin and Rinta wedding invitation" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: SITE_TITLE },
         { name: "twitter:description", content: SITE_DESCRIPTION },
-        { name: "twitter:image", content: ogImage },
+        { name: "twitter:image", content: OG_IMAGE_URL },
       ],
       links: [
         {
@@ -114,6 +117,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         { rel: "icon", href: `${publicUrl("favicon.png")}?v=3`, type: "image/png" },
         { rel: "apple-touch-icon", href: `${publicUrl("apple-touch-icon.png")}?v=3` },
+        { rel: "image_src", href: OG_IMAGE_URL },
       ],
     };
   },
