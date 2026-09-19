@@ -6,6 +6,13 @@ import { Reveal } from "@/components/Reveal";
 import { WeddingParty, type PartyMemberData } from "@/components/WeddingParty";
 import { GallerySection } from "@/components/GallerySection";
 import { BgmPlayer, type BgmPlayerHandle } from "@/components/BgmPlayer";
+import { BrandLogo } from "@/components/BrandLogo";
+import {
+  SITE_DESCRIPTION,
+  SITE_PAGE_TITLE,
+  SITE_TITLE,
+  absoluteUrl,
+} from "@/lib/site";
 import coupleCover from "@/assets/couple-cover.webp";
 import bridesmaid1 from "@/assets/bridesmaid-1.webp";
 import bridesmaid2 from "@/assets/bridesmaid-2.webp";
@@ -30,24 +37,29 @@ import img6 from "@/assets/img-6.webp";
 import img7 from "@/assets/img-7.webp";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Abin & Rinta — Wedding Invitation | 5 November 2026" },
-      {
-        name: "description",
-        content:
-          "Abin Jacob and Rinta Ansu Kuriakose invite you to their engagement on 29 October 2026 and wedding on 5 November 2026 at St Basil Church, Manimala.",
-      },
-      { property: "og:title", content: "Abin & Rinta — Wedding Invitation" },
-      {
-        property: "og:description",
-        content:
-          "Engagement 29 October 2026 · Wedding 5 November 2026, St Basil Church, Manimala. You are lovingly invited.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () => {
+    const ogImage = `${absoluteUrl("og-thumb.webp")}?v=2`;
+    const pageUrl = absoluteUrl("");
+    return {
+      meta: [
+        { title: SITE_PAGE_TITLE },
+        { name: "description", content: SITE_DESCRIPTION },
+        { property: "og:title", content: SITE_TITLE },
+        { property: "og:description", content: SITE_DESCRIPTION },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: pageUrl },
+        { property: "og:site_name", content: "Abin & Rinta" },
+        { property: "og:image", content: ogImage },
+        { property: "og:image:secure_url", content: ogImage },
+        { property: "og:image:type", content: "image/webp" },
+        { property: "og:image:alt", content: "Abin and Rinta wedding invitation" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: SITE_TITLE },
+        { name: "twitter:description", content: SITE_DESCRIPTION },
+        { name: "twitter:image", content: ogImage },
+      ],
+    };
+  },
   component: Invitation,
 });
 
@@ -329,57 +341,6 @@ function WatercolorBg() {
   );
 }
 
-function Monogram({ size = 148, light = true }: { size?: number; light?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      width={size}
-      height={size}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      aria-hidden
-    >
-      <circle
-        cx="100"
-        cy="100"
-        r="95"
-        fill={light ? "rgba(255,255,255,0.45)" : "#1a2744"}
-        stroke={light ? "rgba(26,39,68,.55)" : "rgba(160,120,32,.5)"}
-        strokeWidth="1.2"
-      />
-      <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(26,39,68,.25)" strokeWidth=".8" />
-      <text x="64" y="123" textAnchor="middle" fontFamily="Italiana, serif" fontSize="72" fill="#8a6a20">
-        A
-      </text>
-      <text
-        x="100"
-        y="114"
-        textAnchor="middle"
-        fontFamily="Playfair Display, serif"
-        fontSize="26"
-        fill={light ? "rgba(26,39,68,.85)" : "rgba(255,245,248,.9)"}
-        fontStyle="italic"
-      >
-        &amp;
-      </text>
-      <text x="136" y="123" textAnchor="middle" fontFamily="Italiana, serif" fontSize="72" fill="#8a6a20">
-        R
-      </text>
-      <text
-        x="100"
-        y="154"
-        textAnchor="middle"
-        fontFamily="Cinzel, serif"
-        fontSize="10"
-        fill="#8a6a20"
-        letterSpacing="3"
-      >
-        NOV 2026
-      </text>
-    </svg>
-  );
-}
-
 function Invitation() {
   const [opened, setOpened] = useState(false);
   const bgmRef = useRef<BgmPlayerHandle>(null);
@@ -404,10 +365,8 @@ function Invitation() {
 
       {opened && (
         <div className="fixed top-3 left-1/2 z-50 -translate-x-1/2">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full border border-primary/40 bg-[#1a2744] shadow-md">
-            <span className="font-display text-[1.05rem] leading-none text-[#c4a04a]">A</span>
-            <span className="font-amp px-0.5 text-[0.7rem] text-[#fff5f8] italic">&amp;</span>
-            <span className="font-display text-[1.05rem] leading-none text-[#c4a04a]">R</span>
+          <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-primary/35 bg-[#fdf3f6] shadow-md">
+            <BrandLogo size={48} className="h-12 w-12" />
           </div>
         </div>
       )}
@@ -438,7 +397,7 @@ function Invitation() {
               November 2026
             </span>
             <div className="mt-3">
-              <Monogram size={96} />
+              <BrandLogo size={132} className="h-[7.5rem] w-[7.5rem] sm:h-36 sm:w-36" />
             </div>
             <p className="font-caps mt-2 text-[0.78rem] font-medium tracking-[0.32em] text-primary uppercase">
               — With love —
@@ -495,6 +454,7 @@ function Invitation() {
         <div className="absolute inset-0 bg-[#fdf3f6]/45" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#fdf3f6]/30 via-[#fdf3f6]/50 to-[#fdf3f6]/80" />
         <div className="animate-rise relative z-10 max-w-xl text-center">
+          <BrandLogo size={108} className="mx-auto mb-4 h-24 w-24" />
           <p className="font-caps text-sm font-semibold tracking-[0.32em] text-primary uppercase sm:text-base">
             The Wedding Celebration of
           </p>
@@ -793,6 +753,7 @@ function Invitation() {
       {/* Closing */}
       <footer className="relative z-10 px-6 py-20 text-center">
         <Reveal>
+          <BrandLogo size={112} className="mx-auto mb-4 h-24 w-24" />
           <p className="font-caps text-[0.78rem] tracking-[0.28em] text-muted-foreground uppercase">
             With love and gratitude
           </p>

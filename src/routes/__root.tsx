@@ -11,6 +11,13 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import {
+  SITE_DESCRIPTION,
+  SITE_PAGE_TITLE,
+  SITE_TITLE,
+  absoluteUrl,
+  publicUrl,
+} from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -73,33 +80,43 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Italiana&family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
+  head: () => {
+    const ogImage = `${absoluteUrl("og-thumb.webp")}?v=2`;
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: SITE_PAGE_TITLE },
+        { name: "description", content: SITE_DESCRIPTION },
+        { name: "author", content: "Abin & Rinta" },
+        { property: "og:title", content: SITE_TITLE },
+        { property: "og:description", content: SITE_DESCRIPTION },
+        { property: "og:type", content: "website" },
+        { property: "og:image", content: ogImage },
+        { property: "og:image:secure_url", content: ogImage },
+        { property: "og:image:type", content: "image/webp" },
+        { property: "og:image:alt", content: "Abin and Rinta wedding invitation" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: SITE_TITLE },
+        { name: "twitter:description", content: SITE_DESCRIPTION },
+        { name: "twitter:image", content: ogImage },
+      ],
+      links: [
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Italiana&family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap",
+        },
+        { rel: "icon", href: publicUrl("favicon.png"), type: "image/png" },
+        { rel: "apple-touch-icon", href: publicUrl("apple-touch-icon.png") },
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
