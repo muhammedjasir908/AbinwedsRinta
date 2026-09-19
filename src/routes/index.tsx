@@ -260,7 +260,7 @@ const groomsmen: PartyMemberData[] = [
     gradient: "linear-gradient(135deg, #18325c, #6090c0)",
   },
   {
-    name: "",
+    name: "Subin Mathew",
     photo: groomsman8,
     gradient: "linear-gradient(135deg, #1a365e, #5a82b8)",
   },
