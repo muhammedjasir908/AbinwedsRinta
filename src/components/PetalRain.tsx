@@ -43,11 +43,13 @@ export function PetalRain({ count = 26 }: { count?: number }) {
             animationDelay: `-${p.delay}s`,
             opacity: p.opacity,
             ["--drift" as string]: `${p.drift}px`,
-            borderRadius: "60% 10% 60% 10% / 60% 60% 10% 40%",
+            borderRadius: "100% 0 60% 50% / 60% 0 100% 50%",
             background:
-              p.hue > 0.55
-                ? "linear-gradient(135deg, var(--petal-light), var(--petal-warm))"
-                : "linear-gradient(135deg, var(--petal-blush), var(--petal-deep))",
+              p.hue > 0.66
+                ? "radial-gradient(120% 120% at 32% 20%, #fbe3e8, #f1a8b6 55%, #df7c90 100%)"
+                : p.hue > 0.33
+                  ? "radial-gradient(120% 120% at 32% 20%, #f4bac6, #d76e84 55%, #b94c66 100%)"
+                  : "radial-gradient(120% 120% at 32% 20%, #e88ba0, #b53f5a 52%, #8c2e45 100%)",
             filter: "blur(0.2px)",
           }}
         />

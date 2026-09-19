@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const units = ["Days", "Hours", "Minutes", "Seconds"] as const;
+const compactUnits = ["Days", "Hrs", "Mins", "Secs"] as const;
 
 function diff(target: number) {
   const ms = Math.max(0, target - Date.now());
@@ -30,41 +31,55 @@ export function Countdown({
     return () => clearInterval(id);
   }, [time]);
 
+  const labels = compact ? compactUnits : units;
+
   return (
     <div className="text-center">
       <p
         className={`font-caps uppercase ${
           compact
             ? "sr-only"
-            : "text-[0.65rem] tracking-[0.42em] text-muted-foreground"
+            : "text-[0.8rem] font-medium tracking-[0.28em] text-primary"
         }`}
       >
         {label}
       </p>
-      <div className={compact ? "flex justify-center gap-2 sm:gap-4" : "mt-5 flex justify-center gap-3 sm:gap-6"}>
-        {units.map((u, i) => (
-          <div
-            key={u}
-            className={
-              compact
-                ? "flex min-w-12 flex-col items-center px-1 sm:min-w-14"
-                : "card-paper flex min-w-[68px] flex-col items-center px-3 py-4 sm:min-w-[92px] sm:px-5"
-            }
-          >
-            <span
-              className={`font-display text-foreground tabular-nums ${
-                compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl"
-              }`}
+      <div
+        className={
+          compact
+            ? "flex items-start justify-center gap-2 sm:gap-4"
+            : "mt-6 flex justify-center gap-2.5 sm:gap-4"
+        }
+      >
+        {labels.map((u, i) => (
+          <div key={u} className="flex items-start">
+            {compact && i > 0 && (
+              <span className="font-display px-1 text-3xl leading-none text-primary sm:text-4xl">·</span>
+            )}
+            <div
+              className={
+                compact
+                  ? "flex min-w-14 flex-col items-center px-1 sm:min-w-16"
+                  : "card-paper flex min-w-[72px] flex-col items-center px-3 py-5 sm:min-w-[100px] sm:px-5"
+              }
             >
-              {parts ? String(parts[i]).padStart(2, "0") : "--"}
-            </span>
-            <span
-              className={`font-caps text-muted-foreground uppercase ${
-                compact ? "mt-1 text-[0.42rem] tracking-[0.2em]" : "mt-2 text-[0.55rem] tracking-[0.3em]"
-              }`}
-            >
-              {u}
-            </span>
+              <span
+                className={`font-display font-normal tabular-nums leading-none text-foreground ${
+                  compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"
+                }`}
+              >
+                {parts ? String(parts[i]).padStart(2, "0") : "--"}
+              </span>
+              <span
+                className={`font-caps font-medium uppercase ${
+                  compact
+                    ? "mt-1.5 text-[0.7rem] tracking-[0.18em] text-muted-foreground"
+                    : "mt-2.5 text-[0.75rem] tracking-[0.18em] text-muted-foreground"
+                }`}
+              >
+                {u}
+              </span>
+            </div>
           </div>
         ))}
       </div>
