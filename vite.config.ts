@@ -7,7 +7,8 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
-const pagesBase = "/abinwedsrinta/";
+const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "abinwedsrinta";
+const pagesBase = `/${repoName}/`;
 
 export default defineConfig({
   vite: {
