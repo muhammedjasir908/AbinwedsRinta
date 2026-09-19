@@ -152,7 +152,7 @@ function PartyTrack({
 export function KidsTeam({
   kids,
 }: {
-  kids: { name: string; role: string; gradient: string; photo?: string | null; wide?: boolean }[];
+  kids: { name: string; role?: string; gradient: string; photo?: string | null; wide?: boolean }[];
 }) {
   const [lead, ...rest] = kids;
 

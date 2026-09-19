@@ -239,20 +239,17 @@ const groomsmen: PartyMemberData[] = [
 const kidsTeam = [
   {
     name: "Zairah & Zakh",
-    role: "Flower Girl & Ring Bearer",
     photo: zairahAndZakh,
     wide: true,
     gradient: "linear-gradient(135deg, #d18aa8, #f0bcd0)",
   },
   {
     name: "Jeremiah",
-    role: "Ring Bearer",
     photo: jeremiah,
     gradient: "linear-gradient(135deg, #1a3a6b, #6e9ac9)",
   },
   {
     name: "Don Paul",
-    role: "Ring Bearer",
     photo: donPaul,
     gradient: "linear-gradient(135deg, #162e58, #5a88b5)",
   },
@@ -359,9 +356,9 @@ function Invitation() {
           src={coupleCover}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[50%_18%] opacity-50"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[50%_18%] opacity-80"
         />
-        <div className="absolute inset-0 bg-[#fdf3f6]/75" />
+        <div className="absolute inset-0 bg-[#fdf3f6]/40" />
         <div className="pointer-events-none absolute inset-5 z-20 border border-foreground/30 sm:inset-6" />
         <div className="pointer-events-none absolute inset-7 z-20 border border-foreground/15 sm:inset-8" />
         <span className="pointer-events-none absolute top-7 left-7 z-20 h-12 w-12 border-t-2 border-l-2 border-primary sm:top-8 sm:left-8" />
@@ -429,8 +426,8 @@ function Invitation() {
           alt="Abin and Rinta"
           className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
         />
-        <div className="absolute inset-0 bg-[#fdf3f6]/45" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fdf3f6]/30 via-[#fdf3f6]/50 to-[#fdf3f6]/80" />
+        <div className="absolute inset-0 bg-[#fdf3f6]/18" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fdf3f6]/12 via-[#fdf3f6]/22 to-[#fdf3f6]/48" />
         <div className="animate-rise relative z-10 max-w-xl text-center">
           <BrandLogo size={56} className="mx-auto mb-5" />
           <p className="font-caps text-sm font-semibold tracking-[0.32em] text-primary uppercase sm:text-base">
