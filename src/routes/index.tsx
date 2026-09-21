@@ -4,6 +4,7 @@ import { PetalRain } from "@/components/PetalRain";
 import { Countdown } from "@/components/Countdown";
 import { Reveal } from "@/components/Reveal";
 import { KidsTeam, WeddingParty, type PartyMemberData } from "@/components/WeddingParty";
+import { FamilyBlessings } from "@/components/FamilyBlessings";
 import { GallerySection } from "@/components/GallerySection";
 import { BgmPlayer, type BgmPlayerHandle } from "@/components/BgmPlayer";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -15,6 +16,8 @@ import {
   absoluteUrl,
 } from "@/lib/site";
 import coupleCover from "@/assets/couple-cover.webp";
+import groom from "@/assets/groom.webp";
+import bride from "@/assets/bride.webp";
 import bridesmaid1 from "@/assets/bridesmaid-1.webp";
 import bridesmaid2 from "@/assets/bridesmaid-2.webp";
 import bridesmaid3 from "@/assets/bridesmaid-3.webp";
@@ -282,6 +285,54 @@ const kidsTeam = [
     name: "Don Paul",
     photo: donPaul,
     gradient: "linear-gradient(135deg, #162e58, #5a88b5)",
+  },
+];
+
+const families = [
+  {
+    name: "Abin",
+    role: "The Groom",
+    place: "Kadayanikkadu, Kottayam",
+    photo: groom,
+    groups: [
+      {
+        label: "Parents",
+        people: ["Varghese Chacko & Leelamma Chacko"],
+      },
+      {
+        label: "Siblings",
+        people: ["Tisha Jacob (Sister)", "Mathew C B (Brother-in-law)"],
+      },
+      {
+        label: "Nephews",
+        people: ["Martin Paul & Don Paul"],
+      },
+    ],
+  },
+  {
+    name: "Rinta",
+    role: "The Bride",
+    place: "Eraviperoor, Thiruvalla",
+    photo: bride,
+    groups: [
+      {
+        label: "Parents",
+        people: ["P.P. Mathew & Sobhana Kuriakose"],
+      },
+      {
+        label: "Siblings",
+        people: [
+          "Binta Alin Kuriakose (Sister)",
+          "Linta Susan Kuriakose (Sister)",
+          "Prince Joseph (Brother-in-law)",
+          "Tijo Thomas (Brother-in-law)",
+        ],
+      },
+      {
+        label: "Niece & Nephews",
+        people: ["Zairah, Zakh and Jeremiah"],
+      },
+    ],
   },
 ];
 
@@ -683,7 +734,8 @@ function Invitation() {
 
       {/* Families */}
       <section className="relative z-10 border-b border-primary/20 px-6 py-16 sm:py-24">
-        <SectionTitle title="With Blessings From" />
+        <SectionTitle kicker="Meet our families" title="With Blessings From" />
+        <FamilyBlessings families={families} />
         <KidsTeam kids={kidsTeam} />
       </section>
 
