@@ -736,11 +736,16 @@ function Invitation() {
       <section className="relative z-10 border-b border-primary/20 px-6 py-16 sm:py-24">
         <SectionTitle kicker="Meet our families" title="With Blessings From" />
         <FamilyBlessings families={families} />
-        <KidsTeam kids={kidsTeam} />
       </section>
 
       {/* Wedding party */}
       <WeddingParty groomsmen={groomsmen} bridesmaids={bridesmaids} />
+
+      {/* Kids */}
+      <section className="relative z-10 border-b border-primary/20 px-6 py-16 sm:py-24">
+        <SectionTitle title="Wishes From" />
+        <KidsTeam kids={kidsTeam} />
+      </section>
 
       {/* Colour code */}
       <section className="relative z-10 border-y border-primary/20 bg-secondary/40 px-6 py-16 sm:py-24">
