@@ -150,8 +150,8 @@ export function KidsTeam({
   return (
     <div className="mt-12">
       <div className="font-caps mb-5 flex items-center justify-center gap-2.5 px-6 text-[0.8rem] font-medium tracking-[0.22em] text-primary uppercase">
-        <span className="text-base leading-none">🌸</span>
-        <span>Our Kids Team</span>
+        <span className="text-base leading-none">💍</span>
+        <span>Ring Bearers</span>
       </div>
       <div className="flex flex-col items-center gap-3.5 px-6 py-2 sm:gap-4">
         {lead ? (

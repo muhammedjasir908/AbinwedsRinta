@@ -297,7 +297,7 @@ const families = [
     groups: [
       {
         label: "Parents",
-        people: ["Varghese Chacko & Leelamma Chacko"],
+        people: ["T.V Chacko & Leelamma Chacko"],
       },
       {
         label: "Siblings",
@@ -629,7 +629,7 @@ function Invitation() {
             </p>
             <h3 className="font-script mt-3 text-5xl leading-tight text-foreground sm:text-6xl">Abin Jacob</h3>
             <p className="mt-4 text-xl leading-loose text-muted-foreground italic">
-              S/o Varghese Chacko &amp; Leelamma Chacko
+              S/o T.V Chacko &amp; Leelamma Chacko
               <br />
               Thottiyil House, Kadayanikkadu, Kottayam
             </p>
@@ -743,7 +743,6 @@ function Invitation() {
 
       {/* Kids */}
       <section className="relative z-10 border-b border-primary/20 px-6 py-16 sm:py-24">
-        <SectionTitle title="Wishes From" />
         <KidsTeam kids={kidsTeam} />
       </section>
 
