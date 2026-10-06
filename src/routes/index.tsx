@@ -535,14 +535,17 @@ function Invitation() {
         </div>
         <a
           href="#invitation"
-          className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center text-foreground"
+          className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center justify-center text-foreground"
           aria-label="Scroll down to see invitation details"
         >
+          <span className="font-caps mb-1 text-[0.65rem] font-semibold tracking-[0.25em] text-foreground/90 uppercase">
+            Scroll down
+          </span>
           <svg
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="3"
             className="animate-scroll-hint h-8 w-8 motion-reduce:animate-none"
             aria-hidden
           >
