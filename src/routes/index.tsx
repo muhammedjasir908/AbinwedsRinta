@@ -82,20 +82,13 @@ const occasions = [
     rows: [
       {
         icon: "calendar" as const,
-        label: "Date & time",
+        label: "Date",
         value: (
           <>
             Thursday,{" "}
             <span className="font-body font-bold">29th October 2026</span>
           </>
         ),
-        sub: "4:00 PM onwards",
-      },
-      {
-        icon: "pin" as const,
-        label: "Ceremony",
-        value: "Little Flower Church, Kaduvakulam",
-        sub: "Betrothal · 4:00 PM",
       },
       {
         icon: "pin" as const,
@@ -106,14 +99,9 @@ const occasions = [
     ],
     actions: [
       {
-        label: "Church directions",
-        href: "https://share.google/jQsZTUKE0HRxv4hmi",
-        primary: true,
-      },
-      {
         label: "Reception directions",
         href: "https://share.google/IhPZjSVFo1bmajgKg",
-        primary: false,
+        primary: true,
       },
     ],
   },
